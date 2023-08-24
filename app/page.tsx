@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const Home = () => {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24">
+    <main className="flex h-[calc(100vh-80px)] flex-col items-center justify-center p-24">
       <Image
         src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Star_Wars_Logo.svg"
         alt={"Star Wars logo..."}

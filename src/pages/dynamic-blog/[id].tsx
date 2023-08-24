@@ -41,7 +41,6 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   try {
     const response = await fetch(`https://swapi.dev/api/people/${params?.id}/`);
     const data = await response.json();
-
     if (!data || data.detail === "Not found") {
       return {
         notFound: true,
