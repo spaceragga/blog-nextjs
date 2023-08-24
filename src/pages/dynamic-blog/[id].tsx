@@ -1,6 +1,6 @@
 import React from "react";
-import { GetServerSideProps } from "next";
 import Link from "next/link";
+import { createGetServerSideProps } from "@/shared/server";
 
 interface Character {
   id: string;
@@ -37,15 +37,10 @@ const CharacterPage: React.FC<CharacterPageProps> = ({ character }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  try {
+export const getServerSideProps = createGetServerSideProps(
+  async ({ params }) => {
     const response = await fetch(`https://swapi.dev/api/people/${params?.id}/`);
     const data = await response.json();
-    if (!data || data.detail === "Not found") {
-      return {
-        notFound: true,
-      };
-    }
 
     const character: Character = {
       id: data?.name.toLowerCase().replace(/ /g, "-"),
@@ -59,12 +54,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     };
 
     return { props: { character } };
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    return {
-      notFound: true,
-    };
   }
-};
+);
 
 export default CharacterPage;

@@ -1,4 +1,4 @@
-import { GetStaticProps } from "next";
+import { GetStaticProps, GetStaticPathsResult } from "next";
 import Link from "next/link";
 
 interface Character {
@@ -14,10 +14,10 @@ interface DynamicBlogProps {
 const DynamicBlog: React.FC<DynamicBlogProps> = ({ characters }) => {
   return (
     <div>
-      <h1>Star Wars Characters</h1>
+      <h1 className={" text-yellow-500"}>Star Wars Characters</h1>
       <ul>
         {characters.map((character) => (
-          <li key={character.id}>
+          <li key={character.id} className={"mt-3"}>
             <Link href={`/dynamic-blog/${character.id}`}>{character.name}</Link>
           </li>
         ))}
